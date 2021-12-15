@@ -33,7 +33,7 @@ u32 gt1x_cfg_length = GTP_CONFIG_MAX_LENGTH;
 gt1x_chip_type_t gt1x_chip_type = CHIP_TYPE_NONE;
 struct gt1x_version_info gt1x_version = { {0} };
 #ifdef CONFIG_GTP_HAVE_TOUCH_KEY
-static const u16 gt1x_touch_key_array[] = GTP_KEY_TAB;
+extern const u16 gt1x_touch_key_array[] = GTP_KEY_TAB;
 #endif
 #if defined(CONFIG_GTP_WITH_STYLUS) && defined(CONFIG_GTP_HAVE_STYLUS_KEY)
 static const u16 gt1x_stylus_key_array[] = GTP_STYLUS_KEY_TAB;
@@ -1875,7 +1875,7 @@ static int gt1x_ps_init(void)
 		{
 			int i;
 			for (i = 0; i < sizeof(ps_attrs)/sizeof(ps_attrs[0]); i++) {
-				err = sysfs_create_file(gt1x_ps_dev->kobj, &ps_attrs[i].attr)
+				err = sysfs_create_file(gt1x_ps_dev->kobj, &ps_attrs[i].attr);
 				if (err < 0) {
 					goto err_create_file;
 				}
